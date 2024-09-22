@@ -3,189 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Gallery - Scanlon123 Photography</title>
-    <link rel="stylesheet" href="../styles.css">
-    <style>
-        /* Add styles specific to the gallery */
-        .gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .thumbnail {
-            margin: 1rem;
-            cursor: pointer;
-            transition: transform 0.2s;
-            width: 150px; /* Limit thumbnail size */
-            height: 100px; /* Limit thumbnail height */
-            object-fit: cover; /* Maintain aspect ratio */
-        }
-
-        .thumbnail:hover {
-            transform: scale(1.05);
-        }
-
-        .full-screen {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            flex-direction: row; /* Place image and info side by side */
-            z-index: 1000;
-        }
-
-        .full-screen img {
-            max-width: 60%;
-            max-height: 80%;
-            margin-right: 20px;
-        }
-
-        .image-info {
-            background: white;
-            color: black;
-            padding: 20px;
-            width: 300px;
-            text-align: left;
-        }
-
-        .nav-arrows {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: white;
-            font-size: 2rem;
-            user-select: none;
-        }
-
-        .nav-left {
-            left: 10px;
-        }
-
-        .nav-right {
-            right: 10px;
-        }
-    </style>
+    <title>Scanlon123 Photography - Home</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Header -->
     <header>
-        <img src="../flowers.jpg" alt="Flowers" class="header-image">
+        <img src="flowers.jpg" alt="Flowers" class="header-image">
         <h1>Scanlon123 Photography</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="services.html">Services</a>
             <a href="portfolio.html">Portfolio</a>
-            <a href="view-photos.html">View Photos</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>
 
-    <!-- Gallery Section -->
-    <section class="gallery">
-        <img src="1.jpg" alt="Food" class="thumbnail" onclick="openFullScreen(0)">
-        <img src="2.jpg" alt="Image 2" class="thumbnail" onclick="openFullScreen(1)">
-        <img src="3.jpg" alt="Image 3" class="thumbnail" onclick="openFullScreen(2)">
-        <img src="4.jpg" alt="Image 4" class="thumbnail" onclick="openFullScreen(3)">
-        <img src="5.jpg" alt="Image 5" class="thumbnail" onclick="openFullScreen(4)">
-        <img src="6.jpg" alt="Image 6" class="thumbnail" onclick="openFullScreen(5)">
-        <img src="7.jpg" alt="Image 7" class="thumbnail" onclick="openFullScreen(6)">
-    </section>
-
-    <!-- Full-Screen View -->
-    <div class="full-screen" id="full-screen">
-        <span class="nav-arrows nav-left" onclick="changeImage(-1)">&#10094;</span>
-        <img id="full-image" src="" alt="Full Image">
-        <span class="nav-arrows nav-right" onclick="changeImage(1)">&#10095;</span>
-        <div class="image-info">
-            <h3 id="image-title"></h3>
-            <hr>
-            <p id="image-description"></p>
-            <p>ID: <span id="image-id"></span></p>
-            <p>Date: <span id="image-date"></span></p>
-            <button onclick="downloadImage()">Download</button>
-            <button onclick="buyPrint()">Buy Print</button>
+    <!-- Banner Section -->
+    <section class="banner">
+        <div class="banner-content">
+            <img src="food.jpg" alt="Food" class="banner-image">
+            <div class="text-content">
+                <h2>Capturing the moments that matter</h2>
+                <p>
+                    <a href="portfolio.html" style="color: #fff; background-color: #000; padding: 10px 20px; text-decoration: none;">View Portfolio</a>
+                </p>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Scanlon123 Photography. All rights reserved.</p>
     </footer>
-
-    <script>
-        let currentIndex = 0;
-        const images = [
-            { src: '1.jpg', title: 'Food', description: '', id: 'ID121', date: '21-09-2024 16:26:24' },
-            { src: '2.jpg', title: 'Party', description: '.', id: 'ID122', date: '21-09-2024 16:30:20' },
-            { src: '3.jpg', title: 'Party', description: '.', id: 'ID123', date: '21-09-2024 16:30:43' },
-            { src: '4.jpg', title: 'Party', description: '', id: 'ID124', date: '21-09-2024 16:30:47' },
-            { src: '5.jpg', title: 'People', description: '', id: 'ID125', date: '21-09-2024 17:37:43' },
-            { src: '6.jpg', title: 'People', description: '', id: 'ID126', date: '21-09-2024 19:07:04' },
-            { src: '7.jpg', title: 'Flowers', description: '', id: 'ID127', date: '21-09-2024 19:10:03' }
-        ];
-
-        function openFullScreen(index) {
-            const image = images[index];
-            document.getElementById('full-image').src = image.src;
-            document.getElementById('image-title').textContent = image.title;
-            document.getElementById('image-description').textContent = image.description;
-            document.getElementById('image-id').textContent = image.id;
-            document.getElementById('image-date').textContent = image.date;
-            document.getElementById('full-screen').style.display = 'flex';
-            currentIndex = index;
-        }
-
-        function closeFullScreen() {
-            document.getElementById('full-screen').style.display = 'none';
-        }
-
-        function changeImage(direction) {
-            currentIndex += direction;
-            if (currentIndex < 0) {
-                currentIndex = images.length - 1;
-            } else if (currentIndex >= images.length) {
-                currentIndex = 0;
-            }
-
-            openFullScreen(currentIndex);
-
-            // Change the right arrow to an X when the last image is reached
-            if (currentIndex === images.length - 1) {
-                document.querySelector('.nav-right').innerHTML = '&#10006;'; // X mark
-                document.querySelector('.nav-right').onclick = closeFullScreen;
-            } else {
-                document.querySelector('.nav-right').innerHTML = '&#10095;'; // Arrow
-                document.querySelector('.nav-right').onclick = () => changeImage(1);
-            }
-        }
-
-        function downloadImage() {
-            const imageSrc = document.getElementById('full-image').src;
-            const a = document.createElement('a');
-            a.href = imageSrc;
-            a.download = imageSrc.split('/').pop(); // Use the image filename
-            document.body.appendChild(a); // Append the anchor element to the document
-            a.click(); // Programmatically click the anchor to trigger the download
-            document.body.removeChild(a); // Remove the anchor element after the download starts
-        }
-
-        function buyPrint() {
-            window.location.href = "https://buy.stripe.com/9AQ02U9Hd7bHgEg3cc"; // Redirect to the Stripe link
-        }
-
-        // Close full-screen view when clicking outside the image or info
-        document.getElementById('full-screen').addEventListener('click', function(e) {
-            if (e.target === this) closeFullScreen();
-        });
-    </script>
 </body>
 </html>
