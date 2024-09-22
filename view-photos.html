@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Photos - Scanlon123 Photography</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function viewPhotoPage() {
+            const input = document.getElementById('photo-input').value.trim();  // Get and trim the input value
+            if (input) {  // Check if input is not empty
+                const page = input + '/index.html';  // Append '/index.html' to the input
+                window.location.href = page;   // Redirect to the new page
+            } else {
+                alert('Please enter a photo ID to view.');
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="flowers.jpg" alt="Flowers" class="header-image">
+        <h1>Scanlon123 Photography</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="services.html">Services</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="view-photos.html">View Photos</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <!-- View Photos Section -->
+    <section class="view-photos">
+        <h2>View Your Photos</h2>
+        <p>Enter the photo ID to view:</p>
+        <input type="text" id="photo-input" placeholder="Enter photo ID here" />
+        <button onclick="viewPhotoPage()">View</button>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Scanlon123 Photography. All rights reserved.</p>
+    </footer>
+</body>
+</html>
